@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/zhejiang.js"></script>
+
+</head>
+<body>
+    <div id="0f49417b53ce406fa784efe641638648" class="chart-container" style="width:800px; height:500px;"></div>
+    <script>
+        var chart_0f49417b53ce406fa784efe641638648 = echarts.init(
+            document.getElementById('0f49417b53ce406fa784efe641638648'), 'white', {renderer: 'canvas'});
+        var option_0f49417b53ce406fa784efe641638648 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "map",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            },
+            "mapType": "\u6d59\u6c5f",
+            "data": [
+                {
+                    "name": "\u6e29\u5dde\u5e02",
+                    "value": 499
+                },
+                {
+                    "name": "\u5b81\u6ce2\u5e02",
+                    "value": 154
+                },
+                {
+                    "name": "\u676d\u5dde\u5e02",
+                    "value": 166
+                },
+                {
+                    "name": "\u53f0\u5dde\u5e02",
+                    "value": 145
+                },
+                {
+                    "name": "\u5609\u5174\u5e02",
+                    "value": 43
+                },
+                {
+                    "name": "\u91d1\u534e\u5e02",
+                    "value": 55
+                },
+                {
+                    "name": "\u7ecd\u5174\u5e02",
+                    "value": 42
+                },
+                {
+                    "name": "\u8862\u5dde\u5e02",
+                    "value": 21
+                },
+                {
+                    "name": "\u4e3d\u6c34\u5e02",
+                    "value": 17
+                },
+                {
+                    "name": "\u6e56\u5dde\u5e02",
+                    "value": 10
+                },
+                {
+                    "name": "\u821f\u5c71\u5e02",
+                    "value": 10
+                }
+            ],
+            "roam": true,
+            "zoom": 1,
+            "showLegendSymbol": false,
+            "emphasis": {},
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                ""
+            ],
+            "selected": {
+                "": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "formatter": "{b}<br/>{c}",
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0
+    },
+    "title": [
+        {
+            "padding": 5,
+            "itemGap": 10
+        }
+    ],
+    "visualMap": {
+        "show": true,
+        "type": "piecewise",
+        "min": 0,
+        "max": 100,
+        "inRange": {
+            "color": [
+                "#50a3ba",
+                "#eac763",
+                "#d94e5d"
+            ]
+        },
+        "calculable": true,
+        "inverse": false,
+        "splitNumber": 5,
+        "orient": "vertical",
+        "left": "50px",
+        "showLabel": true,
+        "itemWidth": 20,
+        "itemHeight": 14,
+        "borderWidth": 0,
+        "pieces": [
+            {
+                "max": 1,
+                "label": "0",
+                "color": "#e8eaf6"
+            },
+            {
+                "min": 1,
+                "max": 10,
+                "label": "1-10",
+                "color": "#7986cb"
+            },
+            {
+                "min": 10,
+                "max": 20,
+                "label": "10-20",
+                "color": "#b39ddb"
+            },
+            {
+                "min": 20,
+                "max": 50,
+                "label": "20-50",
+                "color": "#ce93d8"
+            },
+            {
+                "min": 50,
+                "max": 100,
+                "label": "50-100",
+                "color": "#f48fb1"
+            },
+            {
+                "min": 100,
+                "max": 200,
+                "label": "100-200",
+                "color": "#e57373"
+            },
+            {
+                "min": 200,
+                "label": "200+",
+                "color": "#c62828"
+            }
+        ]
+    }
+};
+        chart_0f49417b53ce406fa784efe641638648.setOption(option_0f49417b53ce406fa784efe641638648);
+    </script>
+</body>
+</html>

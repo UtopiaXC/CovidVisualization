@@ -19,18 +19,23 @@ lines=FileConfirmed.readlines()
 head=lines[0].split(',') # index0为省份，1为国家地区，2为纬度，3为经度，后面的都是日期M/D/Y
 lines.pop(0)
 
+
+
 times=[]
 sum=[]
 
 for i in range(4,94,1):
     map = Map(init_opts=opts.InitOpts(height='500px', width='800px'))
     pie=Pie(init_opts=opts.InitOpts(height='500px', width='800px'))
+
     provices=[]
     valuse=[]
+
     count=0
     temptime=head[i].split('/')
     time='2020-'+temptime[0]+'-'+temptime[1]
     times.append(temptime[0]+'/'+temptime[1]+' 6:00')
+
     for line in lines:
         lineMessage=line.split(',')
         if  lineMessage[1]=='China' or lineMessage[1]=='Taiwan*':
@@ -43,7 +48,7 @@ for i in range(4,94,1):
     sum.append(count)
 
     pieces = [
-        {'max': 1, 'label': '0', 'color': '#e8eaf6'},
+        {'max': 0, 'label': '0', 'color': '#e8eaf6'},
         {'min': 1, 'max': 50, 'label': '1-50', 'color': '#7986cb'},
         {'min': 50, 'max': 100, 'label': '50-100', 'color': '#b39ddb'},
         {'min': 100, 'max': 500, 'label': '100-500', 'color': '#ce93d8'},
@@ -54,16 +59,21 @@ for i in range(4,94,1):
 
     # noinspection PyTypeChecker
     map.add('', zip(provices,valuse))
+
     pie.add('', zip(provices,valuse))
+
     map.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+
     map.set_global_opts(
         visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces,pos_left='100px'),
         tooltip_opts=opts.TooltipOpts(
             trigger="item", formatter="{b}<br/>{c}"),
     )
+
     pie.set_global_opts(
         visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces,pos_left='100px')
     )
+
     filepath = 'Maps/'+time+'.html'
     map.render(path=filepath)
 

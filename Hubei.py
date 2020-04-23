@@ -1,5 +1,6 @@
 from pyecharts import options as opts
-from pyecharts.charts import Map
+from pyecharts.charts import Map, Timeline
+
 hubeiDict={
     '武汉':'武汉市','孝感':'孝感市','黄冈':'黄冈市',
     '荆州':'荆州市','鄂州':'鄂州市','随州':'随州市',
@@ -31,6 +32,8 @@ for line in lines:
     if lineMessage[4]=='湖北省':
         line_cities.append(line)
 
+tl = Timeline()
+tl.add_schema(is_auto_play=True,symbol_size=4)
 
 for i in range(1,5,1):
     for j in range(1,32,1):
@@ -50,20 +53,25 @@ for i in range(1,5,1):
                         cities.append(hubeiDict[lineMessage[12]])
                         values.append(int(lineMessage[15]))
 
+        if not values:
+            continue
+
+
+        map=Map(init_opts=opts.InitOpts(width="800px", height="500px"))
         # noinspection PyTypeChecker
-        c = (
-            Map(init_opts=opts.InitOpts(width="800px", height="500px"))
-                .add(
+        map.add(
                 series_name="",
                 maptype="湖北",
                 data_pair=zip(cities,values),
                 is_map_symbol_show=False,
                 )
-                .set_global_opts(
+        map.set_global_opts(
                 visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces, pos_left='50px'),
                 tooltip_opts=opts.TooltipOpts(
                 trigger="item", formatter="{b}<br/>{c}"),
             )
-                .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-                .render("Hubei/2020-"+str(i)+'-'+str(j)+".html")
-        )
+        map.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+        map.render("Hubei/2020-"+str(i)+'-'+str(j)+".html")
+        tl.add(map, "{}".format('2020-' + str(i)+'-' + str(j)))
+
+tl.render("ChinaChart/HubeiMap.html")

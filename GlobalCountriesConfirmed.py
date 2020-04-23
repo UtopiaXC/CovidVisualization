@@ -86,6 +86,8 @@ plt.show()
 
 plt.clf()
 
+
+
 plt.plot(XChina,YChina,label='China')
 plt.plot(XAmecria,YAmecria,label='America')
 plt.plot(XIran,YIran,label='Iran')

@@ -1,5 +1,5 @@
 from pyecharts import options as opts
-from pyecharts.charts import Map
+from pyecharts.charts import Map, Timeline
 
 GuangdongDict={
     '信阳':'信阳市','郑州':'郑州市','南阳':'南阳市',
@@ -36,6 +36,8 @@ for line in lines:
         line_cities.append(line)
         print(line)
 
+tl = Timeline()
+tl.add_schema(is_auto_play=True,symbol_size=4)
 
 for i in range(1,5,1):
     for j in range(1,32,1):
@@ -65,20 +67,25 @@ for i in range(1,5,1):
                         cities.append(GuangdongDict[lineMessage[12]])
                         values.append(int(lineMessage[15]))
 
+        if not values:
+            continue
+
+        map=Map(init_opts=opts.InitOpts(width="800px", height="500px"))
         # noinspection PyTypeChecker
-        c = (
-            Map(init_opts=opts.InitOpts(width="800px", height="500px"))
-                .add(
-                series_name="",
-                maptype="河南",
-                data_pair=zip(cities,values),
-                is_map_symbol_show=False,
-                )
-                .set_global_opts(
-                visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces, pos_left='50px'),
-                tooltip_opts=opts.TooltipOpts(
-                trigger="item", formatter="{b}<br/>{c}"),
+        map.add(
+            series_name="",
+            maptype="河南",
+            data_pair=zip(cities,values),
+            is_map_symbol_show=False,
             )
-                .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-                .render("Henan/2020-"+str(i)+'-'+str(j)+".html")
+        map.set_global_opts(
+            visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces, pos_left='50px'),
+            tooltip_opts=opts.TooltipOpts(
+            trigger="item", formatter="{b}<br/>{c}"),
         )
+        map.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+        map.render("Henan/2020-"+str(i)+'-'+str(j)+".html")
+
+        tl.add(map, "{}".format('2020-'+str(i)+'-'+str(j)))
+
+tl.render("ChinaChart/HenanMap.html")

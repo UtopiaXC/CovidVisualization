@@ -1,5 +1,5 @@
 from pyecharts import options as opts
-from pyecharts.charts import Map
+from pyecharts.charts import Map, Timeline
 
 GuangdongDict={
     '温州':'温州市','杭州':'杭州市','宁波':'宁波市',
@@ -31,6 +31,8 @@ for line in lines:
         line_cities.append(line)
         print(line)
 
+tl = Timeline()
+tl.add_schema(is_auto_play=True,symbol_size=4)
 
 for i in range(1,5,1):
     for j in range(1,32,1):
@@ -53,20 +55,25 @@ for i in range(1,5,1):
                         cities.append(GuangdongDict[lineMessage[12]])
                         values.append(int(lineMessage[15]))
 
+        if not values:
+            continue
         # noinspection PyTypeChecker
-        c = (
-            Map(init_opts=opts.InitOpts(width="800px", height="500px"))
-                .add(
+
+        map=Map(init_opts=opts.InitOpts(width="800px", height="500px"))
+        map.add(
                 series_name="",
                 maptype="浙江",
                 data_pair=zip(cities,values),
                 is_map_symbol_show=False,
                 )
-                .set_global_opts(
+        map.set_global_opts(
                 visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=pieces, pos_left='50px'),
                 tooltip_opts=opts.TooltipOpts(
                 trigger="item", formatter="{b}<br/>{c}"),
             )
-                .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-                .render("Zhejiang/2020-"+str(i)+'-'+str(j)+".html")
-        )
+        map.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+        map.render("Zhejiang/2020-"+str(i)+'-'+str(j)+".html")
+
+        tl.add(map, "{}".format('2020-' + str(i) +'-'+ str(j)))
+
+tl.render("ChinaChart/ZhejiangMap.html")
